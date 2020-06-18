@@ -108,3 +108,7 @@ _local/templates
 **/.config/Atom/Cookies*
 **/.config/Atom/IndexedDB/
 
+
+
+*.class
+
