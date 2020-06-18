@@ -2,10 +2,16 @@ Copyright (C) 2020 mirage335
 See the end of the file for license conditions.
 See license.txt for translate2geda license conditions.
 
+Self-contained installation of 'translate2geda' .
+
 # Usage
 
 
 # Design
+
+See https://github.com/erichVK5/translate2geda .
+
+The 'translate2geda' program retains its original GPLv2 license.
 
 
 # Safety
