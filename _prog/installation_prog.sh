@@ -1,6 +1,10 @@
 _test_prog() {
-	_test_java
-	! _check_java_openjdkANY && echo 'missing: openjdk'
+	if ! java --version | grep openjdk > /dev/null 2>&1 && ! type javac > /dev/null 2>&1
+	then
+		_test_java
+		! _check_java_openjdkANY && echo 'missing: openjdk'
+	fi
+	return 0
 }
 
 
@@ -9,7 +13,10 @@ _test_build-app-translate2geda_sequence() {
 	_start
 	
 	export ubJavac="c"
-	! _check_java_openjdkANY && echo 'missing: openjdk' && _stop 1
+	if ! java --version | grep openjdk > /dev/null 2>&1 && ! type javac > /dev/null 2>&1
+	then
+		! _check_java_openjdkANY && echo 'missing: openjdk' && _stop 1
+	fi
 	
 	_stop
 }
