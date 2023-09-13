@@ -8,8 +8,13 @@ _translate2geda_sequence() {
 	export sharedGuestProjectDir=/
 	_virtUser "$@"
 	cd "$scriptLib"/translate2geda
-	#_java_openjdk11 translate2geda "${processedArgs[@]}"
-	_java_openjdkANY translate2geda "${processedArgs[@]}"
+	
+	if java --version | grep openjdk > /dev/null 2>&1 && type javac > /dev/null 2>&1
+	then
+		java translate2geda "${processedArgs[@]}"
+	else
+		_java_openjdk11 translate2geda "${processedArgs[@]}"
+	fi
 	
 	_stop "$?"
 }

@@ -1,3 +1,6 @@
 [submodule "_lib/ubiquitous_bash"]
 	path = _lib/ubiquitous_bash
 	url = git@github.com:mirage335/ubiquitous_bash.git
+[submodule "_lib/translate2geda"]
+	path = _lib/translate2geda
+	url = git@github.com:erichVK5/translate2geda.git

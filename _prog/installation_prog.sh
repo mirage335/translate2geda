@@ -53,7 +53,12 @@ _build-app-translate2geda() {
 	
 	cd "$scriptLib"/translate2geda
 	
-	_javac_openjdk11 ./*.java
+	if java --version | grep openjdk > /dev/null 2>&1 && type javac > /dev/null 2>&1
+	then
+		javac ./*.java
+	else
+		_javac_openjdk11 ./*.java
+	fi
 	
 	
 	_stop

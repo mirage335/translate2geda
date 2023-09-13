@@ -36,7 +36,7 @@ _ub_cksum_special_derivativeScripts_contents() {
 #export ub_setScriptChecksum_disable='true'
 ( [[ -e "$0".nck ]] || [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ "$1" == '--profile' ]] || [[ "$1" == '--script' ]] || [[ "$1" == '--call' ]] || [[ "$1" == '--return' ]] || [[ "$1" == '--devenv' ]] || [[ "$1" == '--shell' ]] || [[ "$1" == '--bypass' ]] || [[ "$1" == '--parent' ]] || [[ "$1" == '--embed' ]] || [[ "$1" == '--compressed' ]] || [[ "$0" == "/bin/bash" ]] || [[ "$0" == "-bash" ]] || [[ "$0" == "/usr/bin/bash" ]] || [[ "$0" == "bash" ]] ) && export ub_setScriptChecksum_disable='true'
 export ub_setScriptChecksum_header='2591634041'
-export ub_setScriptChecksum_contents='2101278892'
+export ub_setScriptChecksum_contents='1871562164'
 
 # CAUTION: Symlinks may cause problems. Disable this test for such cases if necessary.
 # WARNING: Performance may be crucial here.
@@ -33020,7 +33020,12 @@ _build-app-translate2geda() {
 	
 	cd "$scriptLib"/translate2geda
 	
-	_javac_openjdk11 ./*.java
+	if java --version | grep openjdk > /dev/null 2>&1 && type javac > /dev/null 2>&1
+	then
+		javac ./*.java
+	else
+		_javac_openjdk11 ./*.java
+	fi
 	
 	
 	_stop
@@ -33051,8 +33056,13 @@ _translate2geda_sequence() {
 	export sharedGuestProjectDir=/
 	_virtUser "$@"
 	cd "$scriptLib"/translate2geda
-	#_java_openjdk11 translate2geda "${processedArgs[@]}"
-	_java_openjdkANY translate2geda "${processedArgs[@]}"
+	
+	if java --version | grep openjdk > /dev/null 2>&1 && type javac > /dev/null 2>&1
+	then
+		java translate2geda "${processedArgs[@]}"
+	else
+		_java_openjdk11 translate2geda "${processedArgs[@]}"
+	fi
 	
 	_stop "$?"
 }
